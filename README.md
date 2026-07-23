@@ -1,2 +1,0 @@
-# hybrid zero trust access
-
