@@ -68,9 +68,9 @@ Microsoft Entra ID (Cloud Identity)
 ├── architecture/
 │   └── hybrid-zero-trust-diagram.png
 ├── policies/
-│   ├── conditional-access-policy-matrix.md
-│   ├── named-locations-config.md
-│   └── pim-role-settings.md
+│   ├── conditional access policy matrix.md
+│   ├── named locations config.md
+│   └── pim role settings.md
 ├── compliance/
 │   └── iso27001-a9-control-mapping.md
 ├── screenshots/
