@@ -20,7 +20,7 @@ It builds a full **Zero Trust access model** on top of that hybrid identity foun
 - Hybrid identity synchronization (AD DS → Microsoft Entra Connect → Entra ID) using password hash sync and seamless SSO
 - Layered **Conditional Access policies** driven by user risk, sign-in risk, device compliance, and application sensitivity
 - **Named Locations** to distinguish trusted corporate IP ranges from untrusted/foreign geographies, enforcing MFA or blocking access outside them
-- **Privileged Identity Management (PIM)** for just-in-time, time-bound, approval-based admin access — no standing privileged accounts
+- **Privileged Identity Management (PIM)** for just-in-time, time-bound, approval-based admin access  no standing privileged accounts
 - **Access Reviews** for guest accounts and privileged roles, run on a recurring quarterly cycle
 - Direct mapping of every control to **ISO 27001 Annex A.9 — Access Control**
 
@@ -38,7 +38,7 @@ I built this project to demonstrate that I can:
 | Risk | Control Implemented | Outcome |
 |---|---|---|
 | Stolen credentials used from outside the corporate network | Named Locations + Conditional Access | Access is blocked or forced into step-up MFA outside trusted geographies |
-| Compromised or unmanaged devices accessing sensitive apps | Device compliance-based Conditional Access | Only Intune-compliant, corporate-managed devices reach sensitive resources |
+| Compromised or unmanaged devices accessing sensitive apps | Device compliance based Conditional Access | Only Intune-compliant, corporate-managed devices reach sensitive resources |
 | Standing admin accounts as a persistent attack target | PIM just-in-time elevation | Admin rights exist only for the duration needed, with approval and logging |
 | Access sprawl — guests and privileged users keeping access they no longer need | Quarterly Access Reviews | Stale and unnecessary access is systematically removed, not left to chance |
 | Failing an ISO 27001 audit due to undocumented access control | Full control-to-clause mapping | Every technical control has a corresponding, evidenced compliance clause |
