@@ -1,17 +1,17 @@
-# ISO 27001:2013 Annex A.9 Access Control Mapping
-
-This document maps the technical controls configured within Microsoft Entra ID and Active Directory Domain Services (AD DS) to the required controls under ISO 27001:2013 Annex A.9.
-
----
-
-## Control Mapping Matrix
-
-| ISO 27001 Control | Requirement Summary | Implemented Technical Control | Verification / Evidence File |
-|---|---|---|---|
-| **A.9.1.1** Access Control Policy | Formal business requirements for access control must be documented. | Layered Conditional Access policies based on user risk, sign-in risk, device compliance, and location. | `policies/conditional-access-policy-matrix.md` |
-| **A.9.1.2** Access to Networks and Network Services | Users shall only be provided access to specific network services they are authorized to use. | Named Locations blocking foreign/untrusted IP ranges; Microsoft Entra Private Access / Application Proxy. | `policies/named-locations-config.md` |
-| **A.9.2.1** User Registration and De-registration | Formal process for assigning and revoking access. | Lifecycle Workflows and SCIM provisioning synced via Entra Connect from AD DS. | Entra Connect Sync Logs & Lifecycle Rules |
-| **A.9.2.2** User Access Provisioning | Formal access provisioning process for all user types and roles. | Dynamic Security Groups and entitlement management packages for role-based access (RBAC). | Group Membership & Assignment Rules |
-| **A.9.2.3** Management of Privileged Access Rights | Allocation and use of privileged access rights shall be restricted and controlled. | Privileged Identity Management (PIM) requiring Just-In-Time (JIT) activation, ticket numbers, and approvals. | `policies/pim-role-settings.md` |
-| **A.9.2.6** Removal or Adjustment of Access Rights | User access rights shall be reviewed at regular intervals. | Quarterly Entra ID Access Reviews enforced for all Guest users and Privileged Roles. | Access Review Audit History Logs |
-| **A.9.4.2** Secure Log-on Procedures | Access to systems and applications shall be controlled by a secure log-on procedure. | Enforced Phishing-Resistant MFA / Passwordless (FIDO2 / Authenticator) via Conditional Access. | Entra ID Authentication Methods Policy |
+Hybrid Enterprise Zero Trust Access Framework — SC-300 Portfolio Project 1
+Prepared by: Kananelo Mohale
+Environment: Hybrid identity lab — on-premises Active Directory + Microsoft Entra ID
+Date: July 2026
+The table below maps each technical control implemented in this project to its corresponding ISO/IEC 27001 Annex A.9 (Access Control) clause, along with the specific evidence artifact that demonstrates it.
+Clause	Control	Implementation in This Project	Evidence / Artifact
+A.9.1.1	Access control policy	Access is governed by a documented set of Conditional Access policies defining who may access what, from where, and under which conditions (risk, device, location).	Conditional Access policy list (3 policies) exported as JSON + screenshot
+A.9.1.2	Access to networks and network services	Named Locations distinguish the trusted corporate network from all other networks; access outside the trusted range triggers step-up MFA.	Named Locations configuration screenshot
+A.9.2.1	User registration and de-registration	User accounts are provisioned in on-premises Active Directory and automatically synchronized to Microsoft Entra ID via Entra Connect, giving a single, auditable source of identity truth.	Entra Connect health status; synced user list showing "On-premises sync: Yes"
+A.9.2.2	User access provisioning	Users are provisioned into role-based Organizational Units (Employees, Contractors, Admins, Service Accounts) that determine their baseline access.	AD OU structure; Get-ADUser output showing department/OU placement
+A.9.2.3	Management of privileged access rights	Privileged directory roles are assigned as "Eligible" rather than standing/active. Activation requires MFA, written justification, and approval from a designated approver before elevated access is granted, and access is automatically time-bound.	PIM role settings; activation request notification; approval screenshot with justification
+A.9.2.5	Review of user access rights	A recurring quarterly Access Review is configured for the privileged role, requiring the reviewer to explicitly re-certify continued need for access.	Access Review Overview screenshot (recurrence: Quarterly, role: User Administrator)
+A.9.2.6	Removal or adjustment of access rights	Eligible PIM assignments expire automatically at the end of the activation window; Access Review outcomes can revoke continued access at each recurrence.	PIM assignment expiration settings; Access Review configuration
+A.9.4.1	Information access restriction	A Conditional Access policy requires the signing-in device to be marked compliant before access to sensitive applications is granted, restricting access at the application layer.	"Require compliant device for sensitive apps" policy screenshot
+A.9.4.2	Secure log-on procedures	Multi-factor authentication is enforced for any sign-in originating outside the trusted corporate network, and is required again at PIM role activation.	"Require MFA outside corporate network" policy screenshot; PIM "On activation, require: Azure MFA" setting
+A.9.4.3	Password management system	Password complexity and lifecycle are enforced at the on-premises Active Directory level; Entra Connect synchronizes password hashes to the cloud without ever transmitting plaintext passwords (Password Hash Synchronization).	AD DS domain password policy; Entra Connect sign-in method configuration
+Scope note: This mapping documents the technical controls built for the Hybrid Enterprise Zero Trust Access Framework lab and is intended as a portfolio artifact demonstrating control-to-clause traceability. It is not a certification audit and has not been assessed by an accredited ISO 27001 certification body. Clause references are drawn from the ISO/IEC 27001:2013 Annex A.9 structure, which remains widely referenced in identity and access management practice.
