@@ -7,7 +7,7 @@
 ![Platform](https://img.shields.io/badge/platform-Microsoft%20Entra%20ID-blue)
 ![Compliance](https://img.shields.io/badge/ISO%2027001-Annex%20A.9-orange)
 
-▶️ **Demo Video:** [Watch on YouTube](PASTE_YOUTUBE_LINK_HERE)
+
 
 ---
 
@@ -86,4 +86,4 @@ Microsoft Entra ID (Cloud Identity)
 This project was built as part of my preparation for **Microsoft SC-300: Identity and Access Administrator**.
 
 
-📩 Feel free to connect with me on [LinkedIn]www.linkedin.com/in/kananelo-mohale if you'd like to discuss the design decisions behind this project.
+📩 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/kananelo-mohale) if you'd like to discuss the design decisions behind this project.
